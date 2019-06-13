@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ultrachemical/CLionProjects/music_composition/individual.cpp
+individual.h
+/home/ultrachemical/CLionProjects/music_composition/individual.h
+
+/home/ultrachemical/CLionProjects/music_composition/individual.h
+
+/home/ultrachemical/CLionProjects/music_composition/main.cpp
+iostream
+-
+individual.h
+/home/ultrachemical/CLionProjects/music_composition/individual.h
+time.h
+-
+stdlib.h
+-
+

@@ -1,0 +1,3 @@
+/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir
+/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/edit_cache.dir

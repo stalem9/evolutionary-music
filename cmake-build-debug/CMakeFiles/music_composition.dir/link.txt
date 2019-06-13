@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/music_composition.dir/main.cpp.o CMakeFiles/music_composition.dir/individual.cpp.o  -o music_composition 
