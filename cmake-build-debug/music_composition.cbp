@@ -84,13 +84,49 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/individual.cpp">
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/include/Binasc.h">
 			<Option target="music_composition"/>
 		</Unit>
-		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/individual.h">
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/include/MidiEvent.h">
 			<Option target="music_composition"/>
 		</Unit>
-		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/main.cpp">
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/include/MidiEventList.h">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/include/MidiFile.h">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/include/MidiMessage.h">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/include/Options.h">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/include/individual.h">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/src/Binasc.cpp">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/src/MidiEvent.cpp">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/src/MidiEventList.cpp">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/src/MidiFile.cpp">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/src/MidiMessage.cpp">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/src/Options.cpp">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/src/individual.cpp">
+			<Option target="music_composition"/>
+		</Unit>
+		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/src/main.cpp">
 			<Option target="music_composition"/>
 		</Unit>
 		<Unit filename="/home/ultrachemical/CLionProjects/music_composition/CMakeLists.txt">

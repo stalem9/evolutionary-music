@@ -4,8 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ultrachemical/CLionProjects/music_composition/individual.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/individual.cpp.o"
-  "/home/ultrachemical/CLionProjects/music_composition/main.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/main.cpp.o"
+  "/home/ultrachemical/CLionProjects/music_composition/src/Binasc.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/src/Binasc.cpp.o"
+  "/home/ultrachemical/CLionProjects/music_composition/src/MidiEvent.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/src/MidiEvent.cpp.o"
+  "/home/ultrachemical/CLionProjects/music_composition/src/MidiEventList.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/src/MidiEventList.cpp.o"
+  "/home/ultrachemical/CLionProjects/music_composition/src/MidiFile.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/src/MidiFile.cpp.o"
+  "/home/ultrachemical/CLionProjects/music_composition/src/MidiMessage.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/src/MidiMessage.cpp.o"
+  "/home/ultrachemical/CLionProjects/music_composition/src/Options.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/src/Options.cpp.o"
+  "/home/ultrachemical/CLionProjects/music_composition/src/individual.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/src/individual.cpp.o"
+  "/home/ultrachemical/CLionProjects/music_composition/src/main.cpp" "/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles/music_composition.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

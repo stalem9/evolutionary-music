@@ -9,10 +9,10 @@
 class individual {
 
     int fit;
-    int instrument[100];
-    int volume[100];
-    int pitch[100];
-    int note_value[100];
+    int* instrument;
+    int* volume;
+    int* pitch;
+    int* note_value;
     int temp;
     int time_signature;
 

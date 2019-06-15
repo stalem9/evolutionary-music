@@ -123,59 +123,221 @@ music_composition/fast:
 	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/build
 .PHONY : music_composition/fast
 
-individual.o: individual.cpp.o
+src/Binasc.o: src/Binasc.cpp.o
 
-.PHONY : individual.o
-
-# target to build an object file
-individual.cpp.o:
-	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/individual.cpp.o
-.PHONY : individual.cpp.o
-
-individual.i: individual.cpp.i
-
-.PHONY : individual.i
-
-# target to preprocess a source file
-individual.cpp.i:
-	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/individual.cpp.i
-.PHONY : individual.cpp.i
-
-individual.s: individual.cpp.s
-
-.PHONY : individual.s
-
-# target to generate assembly for a file
-individual.cpp.s:
-	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/individual.cpp.s
-.PHONY : individual.cpp.s
-
-main.o: main.cpp.o
-
-.PHONY : main.o
+.PHONY : src/Binasc.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/Binasc.cpp.o:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/Binasc.cpp.o
+.PHONY : src/Binasc.cpp.o
 
-main.i: main.cpp.i
+src/Binasc.i: src/Binasc.cpp.i
 
-.PHONY : main.i
+.PHONY : src/Binasc.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/Binasc.cpp.i:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/Binasc.cpp.i
+.PHONY : src/Binasc.cpp.i
 
-main.s: main.cpp.s
+src/Binasc.s: src/Binasc.cpp.s
 
-.PHONY : main.s
+.PHONY : src/Binasc.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/Binasc.cpp.s:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/Binasc.cpp.s
+.PHONY : src/Binasc.cpp.s
+
+src/MidiEvent.o: src/MidiEvent.cpp.o
+
+.PHONY : src/MidiEvent.o
+
+# target to build an object file
+src/MidiEvent.cpp.o:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiEvent.cpp.o
+.PHONY : src/MidiEvent.cpp.o
+
+src/MidiEvent.i: src/MidiEvent.cpp.i
+
+.PHONY : src/MidiEvent.i
+
+# target to preprocess a source file
+src/MidiEvent.cpp.i:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiEvent.cpp.i
+.PHONY : src/MidiEvent.cpp.i
+
+src/MidiEvent.s: src/MidiEvent.cpp.s
+
+.PHONY : src/MidiEvent.s
+
+# target to generate assembly for a file
+src/MidiEvent.cpp.s:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiEvent.cpp.s
+.PHONY : src/MidiEvent.cpp.s
+
+src/MidiEventList.o: src/MidiEventList.cpp.o
+
+.PHONY : src/MidiEventList.o
+
+# target to build an object file
+src/MidiEventList.cpp.o:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiEventList.cpp.o
+.PHONY : src/MidiEventList.cpp.o
+
+src/MidiEventList.i: src/MidiEventList.cpp.i
+
+.PHONY : src/MidiEventList.i
+
+# target to preprocess a source file
+src/MidiEventList.cpp.i:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiEventList.cpp.i
+.PHONY : src/MidiEventList.cpp.i
+
+src/MidiEventList.s: src/MidiEventList.cpp.s
+
+.PHONY : src/MidiEventList.s
+
+# target to generate assembly for a file
+src/MidiEventList.cpp.s:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiEventList.cpp.s
+.PHONY : src/MidiEventList.cpp.s
+
+src/MidiFile.o: src/MidiFile.cpp.o
+
+.PHONY : src/MidiFile.o
+
+# target to build an object file
+src/MidiFile.cpp.o:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiFile.cpp.o
+.PHONY : src/MidiFile.cpp.o
+
+src/MidiFile.i: src/MidiFile.cpp.i
+
+.PHONY : src/MidiFile.i
+
+# target to preprocess a source file
+src/MidiFile.cpp.i:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiFile.cpp.i
+.PHONY : src/MidiFile.cpp.i
+
+src/MidiFile.s: src/MidiFile.cpp.s
+
+.PHONY : src/MidiFile.s
+
+# target to generate assembly for a file
+src/MidiFile.cpp.s:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiFile.cpp.s
+.PHONY : src/MidiFile.cpp.s
+
+src/MidiMessage.o: src/MidiMessage.cpp.o
+
+.PHONY : src/MidiMessage.o
+
+# target to build an object file
+src/MidiMessage.cpp.o:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiMessage.cpp.o
+.PHONY : src/MidiMessage.cpp.o
+
+src/MidiMessage.i: src/MidiMessage.cpp.i
+
+.PHONY : src/MidiMessage.i
+
+# target to preprocess a source file
+src/MidiMessage.cpp.i:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiMessage.cpp.i
+.PHONY : src/MidiMessage.cpp.i
+
+src/MidiMessage.s: src/MidiMessage.cpp.s
+
+.PHONY : src/MidiMessage.s
+
+# target to generate assembly for a file
+src/MidiMessage.cpp.s:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/MidiMessage.cpp.s
+.PHONY : src/MidiMessage.cpp.s
+
+src/Options.o: src/Options.cpp.o
+
+.PHONY : src/Options.o
+
+# target to build an object file
+src/Options.cpp.o:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/Options.cpp.o
+.PHONY : src/Options.cpp.o
+
+src/Options.i: src/Options.cpp.i
+
+.PHONY : src/Options.i
+
+# target to preprocess a source file
+src/Options.cpp.i:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/Options.cpp.i
+.PHONY : src/Options.cpp.i
+
+src/Options.s: src/Options.cpp.s
+
+.PHONY : src/Options.s
+
+# target to generate assembly for a file
+src/Options.cpp.s:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/Options.cpp.s
+.PHONY : src/Options.cpp.s
+
+src/individual.o: src/individual.cpp.o
+
+.PHONY : src/individual.o
+
+# target to build an object file
+src/individual.cpp.o:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/individual.cpp.o
+.PHONY : src/individual.cpp.o
+
+src/individual.i: src/individual.cpp.i
+
+.PHONY : src/individual.i
+
+# target to preprocess a source file
+src/individual.cpp.i:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/individual.cpp.i
+.PHONY : src/individual.cpp.i
+
+src/individual.s: src/individual.cpp.s
+
+.PHONY : src/individual.s
+
+# target to generate assembly for a file
+src/individual.cpp.s:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/individual.cpp.s
+.PHONY : src/individual.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/music_composition.dir/build.make CMakeFiles/music_composition.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -186,12 +348,30 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... music_composition"
 	@echo "... edit_cache"
-	@echo "... individual.o"
-	@echo "... individual.i"
-	@echo "... individual.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/Binasc.o"
+	@echo "... src/Binasc.i"
+	@echo "... src/Binasc.s"
+	@echo "... src/MidiEvent.o"
+	@echo "... src/MidiEvent.i"
+	@echo "... src/MidiEvent.s"
+	@echo "... src/MidiEventList.o"
+	@echo "... src/MidiEventList.i"
+	@echo "... src/MidiEventList.s"
+	@echo "... src/MidiFile.o"
+	@echo "... src/MidiFile.i"
+	@echo "... src/MidiFile.s"
+	@echo "... src/MidiMessage.o"
+	@echo "... src/MidiMessage.i"
+	@echo "... src/MidiMessage.s"
+	@echo "... src/Options.o"
+	@echo "... src/Options.i"
+	@echo "... src/Options.s"
+	@echo "... src/individual.o"
+	@echo "... src/individual.i"
+	@echo "... src/individual.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

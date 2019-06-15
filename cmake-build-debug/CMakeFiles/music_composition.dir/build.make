@@ -57,45 +57,135 @@ include CMakeFiles/music_composition.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/music_composition.dir/flags.make
 
-CMakeFiles/music_composition.dir/main.cpp.o: CMakeFiles/music_composition.dir/flags.make
-CMakeFiles/music_composition.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/music_composition.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/main.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/main.cpp
+CMakeFiles/music_composition.dir/src/main.cpp.o: CMakeFiles/music_composition.dir/flags.make
+CMakeFiles/music_composition.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/music_composition.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/src/main.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/src/main.cpp
 
-CMakeFiles/music_composition.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/main.cpp > CMakeFiles/music_composition.dir/main.cpp.i
+CMakeFiles/music_composition.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/src/main.cpp > CMakeFiles/music_composition.dir/src/main.cpp.i
 
-CMakeFiles/music_composition.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/main.cpp -o CMakeFiles/music_composition.dir/main.cpp.s
+CMakeFiles/music_composition.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/src/main.cpp -o CMakeFiles/music_composition.dir/src/main.cpp.s
 
-CMakeFiles/music_composition.dir/individual.cpp.o: CMakeFiles/music_composition.dir/flags.make
-CMakeFiles/music_composition.dir/individual.cpp.o: ../individual.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/music_composition.dir/individual.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/individual.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/individual.cpp
+CMakeFiles/music_composition.dir/src/individual.cpp.o: CMakeFiles/music_composition.dir/flags.make
+CMakeFiles/music_composition.dir/src/individual.cpp.o: ../src/individual.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/music_composition.dir/src/individual.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/src/individual.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/src/individual.cpp
 
-CMakeFiles/music_composition.dir/individual.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/individual.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/individual.cpp > CMakeFiles/music_composition.dir/individual.cpp.i
+CMakeFiles/music_composition.dir/src/individual.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/src/individual.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/src/individual.cpp > CMakeFiles/music_composition.dir/src/individual.cpp.i
 
-CMakeFiles/music_composition.dir/individual.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/individual.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/individual.cpp -o CMakeFiles/music_composition.dir/individual.cpp.s
+CMakeFiles/music_composition.dir/src/individual.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/src/individual.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/src/individual.cpp -o CMakeFiles/music_composition.dir/src/individual.cpp.s
+
+CMakeFiles/music_composition.dir/src/Binasc.cpp.o: CMakeFiles/music_composition.dir/flags.make
+CMakeFiles/music_composition.dir/src/Binasc.cpp.o: ../src/Binasc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/music_composition.dir/src/Binasc.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/src/Binasc.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/src/Binasc.cpp
+
+CMakeFiles/music_composition.dir/src/Binasc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/src/Binasc.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/src/Binasc.cpp > CMakeFiles/music_composition.dir/src/Binasc.cpp.i
+
+CMakeFiles/music_composition.dir/src/Binasc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/src/Binasc.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/src/Binasc.cpp -o CMakeFiles/music_composition.dir/src/Binasc.cpp.s
+
+CMakeFiles/music_composition.dir/src/MidiEvent.cpp.o: CMakeFiles/music_composition.dir/flags.make
+CMakeFiles/music_composition.dir/src/MidiEvent.cpp.o: ../src/MidiEvent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/music_composition.dir/src/MidiEvent.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/src/MidiEvent.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/src/MidiEvent.cpp
+
+CMakeFiles/music_composition.dir/src/MidiEvent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/src/MidiEvent.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/src/MidiEvent.cpp > CMakeFiles/music_composition.dir/src/MidiEvent.cpp.i
+
+CMakeFiles/music_composition.dir/src/MidiEvent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/src/MidiEvent.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/src/MidiEvent.cpp -o CMakeFiles/music_composition.dir/src/MidiEvent.cpp.s
+
+CMakeFiles/music_composition.dir/src/MidiEventList.cpp.o: CMakeFiles/music_composition.dir/flags.make
+CMakeFiles/music_composition.dir/src/MidiEventList.cpp.o: ../src/MidiEventList.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/music_composition.dir/src/MidiEventList.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/src/MidiEventList.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/src/MidiEventList.cpp
+
+CMakeFiles/music_composition.dir/src/MidiEventList.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/src/MidiEventList.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/src/MidiEventList.cpp > CMakeFiles/music_composition.dir/src/MidiEventList.cpp.i
+
+CMakeFiles/music_composition.dir/src/MidiEventList.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/src/MidiEventList.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/src/MidiEventList.cpp -o CMakeFiles/music_composition.dir/src/MidiEventList.cpp.s
+
+CMakeFiles/music_composition.dir/src/MidiFile.cpp.o: CMakeFiles/music_composition.dir/flags.make
+CMakeFiles/music_composition.dir/src/MidiFile.cpp.o: ../src/MidiFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/music_composition.dir/src/MidiFile.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/src/MidiFile.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/src/MidiFile.cpp
+
+CMakeFiles/music_composition.dir/src/MidiFile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/src/MidiFile.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/src/MidiFile.cpp > CMakeFiles/music_composition.dir/src/MidiFile.cpp.i
+
+CMakeFiles/music_composition.dir/src/MidiFile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/src/MidiFile.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/src/MidiFile.cpp -o CMakeFiles/music_composition.dir/src/MidiFile.cpp.s
+
+CMakeFiles/music_composition.dir/src/MidiMessage.cpp.o: CMakeFiles/music_composition.dir/flags.make
+CMakeFiles/music_composition.dir/src/MidiMessage.cpp.o: ../src/MidiMessage.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/music_composition.dir/src/MidiMessage.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/src/MidiMessage.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/src/MidiMessage.cpp
+
+CMakeFiles/music_composition.dir/src/MidiMessage.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/src/MidiMessage.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/src/MidiMessage.cpp > CMakeFiles/music_composition.dir/src/MidiMessage.cpp.i
+
+CMakeFiles/music_composition.dir/src/MidiMessage.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/src/MidiMessage.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/src/MidiMessage.cpp -o CMakeFiles/music_composition.dir/src/MidiMessage.cpp.s
+
+CMakeFiles/music_composition.dir/src/Options.cpp.o: CMakeFiles/music_composition.dir/flags.make
+CMakeFiles/music_composition.dir/src/Options.cpp.o: ../src/Options.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/music_composition.dir/src/Options.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/music_composition.dir/src/Options.cpp.o -c /home/ultrachemical/CLionProjects/music_composition/src/Options.cpp
+
+CMakeFiles/music_composition.dir/src/Options.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/music_composition.dir/src/Options.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ultrachemical/CLionProjects/music_composition/src/Options.cpp > CMakeFiles/music_composition.dir/src/Options.cpp.i
+
+CMakeFiles/music_composition.dir/src/Options.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/music_composition.dir/src/Options.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ultrachemical/CLionProjects/music_composition/src/Options.cpp -o CMakeFiles/music_composition.dir/src/Options.cpp.s
 
 # Object files for target music_composition
 music_composition_OBJECTS = \
-"CMakeFiles/music_composition.dir/main.cpp.o" \
-"CMakeFiles/music_composition.dir/individual.cpp.o"
+"CMakeFiles/music_composition.dir/src/main.cpp.o" \
+"CMakeFiles/music_composition.dir/src/individual.cpp.o" \
+"CMakeFiles/music_composition.dir/src/Binasc.cpp.o" \
+"CMakeFiles/music_composition.dir/src/MidiEvent.cpp.o" \
+"CMakeFiles/music_composition.dir/src/MidiEventList.cpp.o" \
+"CMakeFiles/music_composition.dir/src/MidiFile.cpp.o" \
+"CMakeFiles/music_composition.dir/src/MidiMessage.cpp.o" \
+"CMakeFiles/music_composition.dir/src/Options.cpp.o"
 
 # External object files for target music_composition
 music_composition_EXTERNAL_OBJECTS =
 
-music_composition: CMakeFiles/music_composition.dir/main.cpp.o
-music_composition: CMakeFiles/music_composition.dir/individual.cpp.o
+music_composition: CMakeFiles/music_composition.dir/src/main.cpp.o
+music_composition: CMakeFiles/music_composition.dir/src/individual.cpp.o
+music_composition: CMakeFiles/music_composition.dir/src/Binasc.cpp.o
+music_composition: CMakeFiles/music_composition.dir/src/MidiEvent.cpp.o
+music_composition: CMakeFiles/music_composition.dir/src/MidiEventList.cpp.o
+music_composition: CMakeFiles/music_composition.dir/src/MidiFile.cpp.o
+music_composition: CMakeFiles/music_composition.dir/src/MidiMessage.cpp.o
+music_composition: CMakeFiles/music_composition.dir/src/Options.cpp.o
 music_composition: CMakeFiles/music_composition.dir/build.make
 music_composition: CMakeFiles/music_composition.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable music_composition"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ultrachemical/CLionProjects/music_composition/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable music_composition"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/music_composition.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
