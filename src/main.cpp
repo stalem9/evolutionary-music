@@ -11,11 +11,11 @@ using namespace smf;
 
 int pop_size;
 
-void breed(individual a, individual b){
+void breed(Individual a, Individual b){
 
 }
 
-individual *population;
+Individual* population;
 
 int main(int argc, char** argv) {
     srand(time(NULL));
@@ -59,6 +59,8 @@ int main(int argc, char** argv) {
 
     // create new track
 
+
+    //random track generation just to understand how to work with library
     random_device rd;
     mt19937 mt(rd());
     uniform_int_distribution<int> starttime(0, 100);
