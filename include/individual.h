@@ -9,13 +9,13 @@
 class Individual {
 
 private:
-    int fit;
+    int fit; //fitness
     int* instrument;
     int* volume;
-    int* pitch;
-    int* note_value;
+    int* pitch; //высота звука
+    int* note_value; //длительность
     int temp;
-    int time_signature;
+    int time_signature; //размер
 
 public:
     Individual(int* instrument, int* volume, int* pitch, int* note_value, int temp, int time_signature);

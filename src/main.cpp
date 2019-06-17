@@ -38,12 +38,26 @@ int main(int argc, char** argv) {
     // copy to buffer
     target.write("../new.mid");
 
+    cin >> pop_size;
 
     // create initial population
+    for (int i = 0; i < pop_size; ++i){
+        //read
+        int* instrument = nullptr;
+        int* volume = nullptr;
+        int* pitch = nullptr;
+        int* note_value = nullptr;
+        int temp = 0;
+        int time_signature = 0;
+        population[i] = *new Individual(instrument, volume, pitch, note_value, temp, time_signature);
+
+    }
 
     //while fitness is not satisfied do{
 
         // calculate fitness of population
+
+        // sort
 
         //selection
 
