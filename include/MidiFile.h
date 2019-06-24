@@ -49,6 +49,9 @@ class MidiFile {
 		MidiFile&      operator=                   (const MidiFile& other);
 		MidiFile&      operator=                   (MidiFile&& other);
 
+        // fitness of individual
+        int fit = 0;
+
 		// reading/writing functions:
 		bool           read                        (const std::string& filename);
 		bool           read                        (std::istream& instream);
@@ -278,6 +281,7 @@ class MidiFile {
 
 		// m_linkedEventQ == True if link analysis has been done.
 		bool m_linkedEventsQ = false;
+
 
 	private:
 		int        extractMidiData                 (std::istream& inputfile,
