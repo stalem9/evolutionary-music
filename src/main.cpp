@@ -6,6 +6,8 @@
 #include <algorithm>
 #include "../include/MidiFile.h"
 #include "../include/Options.h"
+#include <chrono>
+#include <ctime>
 
 using namespace std;
 using namespace smf;
@@ -27,16 +29,17 @@ bool sortRule(MidiFile a, MidiFile b);
 
 int main(int argc, char** argv) {
     srand(time(NULL));
-
+    auto start = chrono::system_clock::now();
     Options options;
     options.process(argc, argv);
 
     MidiFile target;
-    string filename;
-    cout << "Enter target file name\n";
-    cin >> filename;
+    string filename = "../input.mid";
+    //cout << "Enter target file name\n";
+    //cin >> filename;
     if (options.getArgCount() > 0) target.read(options.getArg(1));
     else target.read(filename);
+
     target.joinTracks();
     target.doTimeAnalysis();
     target.linkNotePairs();
@@ -79,9 +82,10 @@ int main(int argc, char** argv) {
 
                 int starttick = target[0][j].tick;
                 midifile.addNoteOn (track, starttick, channel, key, target[0][j].getVelocity());
-
-                int endtick = target[0][j].getLinkedEvent()->tick;
-                midifile.addNoteOff(track, endtick, channel, key);
+                if(target[0][j].isLinked()){
+                    int endtick = target[0][j].getLinkedEvent()->tick;
+                    midifile.addNoteOff(track, endtick, channel, key);
+                }
 
             }
 
@@ -90,8 +94,10 @@ int main(int argc, char** argv) {
         midifile.sortTracks();
         midifile.deleteTrack(0);
         midifile.joinTracks();
+        midifile.doTimeAnalysis();
+        midifile.linkNotePairs();
 
-        string outname = "./population/individual" + to_string(i + 1) + ".mid";
+        string outname = "./population/gen0_individual" + to_string(i + 1) + ".mid";
 
         if (outname.empty()) {
             if (options.getBoolean("hex")) midifile.writeHex(cout);
@@ -101,39 +107,47 @@ int main(int argc, char** argv) {
         population[i] = midifile;
 
     }
+    auto end_generation = chrono::system_clock::now();
+    chrono::duration<double> elapsed_seconds = end_generation-start;
+    cout << "initial population generation completed in " << elapsed_seconds.count() << endl;
 
     bool found = false;
+    int pop_number = 0;
 
-    while (!found){
+    while (!found && pop_number < 1000){
 
         calculate_fitness(target);
 
         std::sort(population, population+pop_size, sortRule);
 
         int part = pop_size/4;
+        int place = target[0].getEventCount()/2;
+        while(!target[0][place].isNoteOff()) place--;
 
         for(int i = 0; i < part; i+=2){
             MidiFile a = population[i];
             MidiFile b = population[i+1];
 
-            breed(a, b, 2, i/2);
+            breed(a, b, place, i/2);
         }
 
         //mutation
 
         for(int i = 0; i < pop_size; ++i){
-            string outname = "./population/individual" + to_string(i + 1) + ".mid";
+            string outname = "./population/gen_" + to_string(pop_number) + "individual" + to_string(i + 1) + ".mid";
             population[i].write(outname);
-            cout << i << " " << population[i].fit << endl;
             if(population[i].fit > 900){
                 found = true;
             }
         }
+        cout << pop_number << " " << population[0].fit << endl;
+        auto end_iteration = chrono::system_clock::now();
+        chrono::duration<double> elapsed_seconds = end_iteration-end_generation;
+        cout << pop_number << "th iteration complete in " << elapsed_seconds.count() << endl;
+        end_generation = end_iteration;
+
+        pop_number++;
     }
-
-    // read buffer
-
-    // create new track
 
     return 0;
 }
@@ -153,7 +167,6 @@ int getNotesCount(MidiFile a){
 
 void breed(MidiFile a, MidiFile b, int place, int pair_n){
     MidiFile ab1 = a, ab2 = b;
-
     for(int i = 0; i < place; ++i){
         ab2[1][i] = a[1][i];
         ab1[1][i] = b[1][i];
@@ -168,6 +181,7 @@ int calculate_fitness(MidiFile target){
 
     for (int i = 0; i < pop_size; ++i){
         int count = 0;
+        int fit  = population[i].fit;
         for(int j = 0; j < population[i][1].getEventCount(); j++){
             if(population[i][1][j].isNote()){
                 if(population[i][1][j].getKeyNumber() == target[0][j].getKeyNumber())
@@ -175,8 +189,8 @@ int calculate_fitness(MidiFile target){
                 //cout << "count! " << count << endl;
             }
         }
-        population[i].fit = 2000*count/(population[i][1].getEventCount());
-        population[i].fit = population[i].fit*population[i].fit/2000;
+        fit += 3000*count/(getNotesCount(population[i]));
+        population[i].fit = fit*fit/2000;
     }
 
     return 0;
