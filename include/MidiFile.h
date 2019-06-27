@@ -37,7 +37,8 @@ class _TickTime {
 
 
 class MidiFile {
-	public:
+public:
+
 		               MidiFile                    (void);
 		               MidiFile                    (const std::string& filename);
 		               MidiFile                    (std::istream& input);

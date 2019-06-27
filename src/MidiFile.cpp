@@ -115,6 +115,7 @@ MidiFile& MidiFile::operator=(const MidiFile& other) {
 	m_timemapvalid        = other.m_timemapvalid;
 	m_timemap             = other.m_timemap;
 	m_rwstatus            = other.m_rwstatus;
+    this->fit             = other.fit;
 	if (other.m_linkedEventsQ) {
 		linkEventPairs();
 	}
@@ -136,6 +137,7 @@ MidiFile& MidiFile::operator=(MidiFile&& other) {
 	m_timemapvalid        = other.m_timemapvalid;
 	m_timemap             = other.m_timemap;
 	m_rwstatus            = other.m_rwstatus;
+	this->fit             = other.fit;
 	return *this;
 }
 
@@ -3149,6 +3151,23 @@ std::ostream& MidiFile::writeLittleEndianDouble(std::ostream& out, double value)
 	out << data.bytes[7];
 	return out;
 }
+
+//    MidiFile &MidiFile::operator=(MidiFile other) {
+//        m_events = std::move(other.m_events);
+//        m_linkedEventsQ = other.m_linkedEventsQ;
+//        other.m_linkedEventsQ = false;
+//        other.m_events.clear();
+//        other.m_events.emplace_back(new MidiEventList);
+//        m_ticksPerQuarterNote = other.m_ticksPerQuarterNote;
+//        m_trackCount          = other.m_trackCount;
+//        m_theTrackState       = other.m_theTrackState;
+//        m_theTimeState        = other.m_theTimeState;
+//        m_readFileName        = other.m_readFileName;
+//        m_timemapvalid        = other.m_timemapvalid;
+//        m_timemap             = other.m_timemap;
+//        m_rwstatus            = other.m_rwstatus;
+//        return *this;
+//    }
 
 
 } // end namespace smf
