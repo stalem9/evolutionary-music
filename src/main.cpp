@@ -20,15 +20,18 @@ MidiFile* population;
 
 int getNotesCount(const MidiFile &a);
 
-void breed(const MidiFile &a, const MidiFile &b, int place, int pair_n);
+void breed(const MidiFile &a, const MidiFile &b, int pair_n);
 
 int calculate_fitness(const MidiFile &target);
 
-void mutate();
+int calculate_tonality(MidiFile &a);
+
+void mutate(MidiFile &a);
+
 
 bool sort_rule(const MidiFile &a, const MidiFile &b){
     //cout << a.fit << " " << b.fit << " bool:"  << (a.fit < b.fit) << endl;
-    return a.fit < b.fit;
+    return a.fit > b.fit;
 }
 
 int main(int argc, char** argv) {
@@ -67,8 +70,6 @@ int main(int argc, char** argv) {
     for (int i = 0; i < pop_size; ++i){
         //read and copy data from target track
 
-        random_device rd;
-        mt19937 mt(rd());
 
         MidiFile midifile;
         midifile.read("./population/individual" + to_string(i + 1) + ".mid");
@@ -79,11 +80,12 @@ int main(int argc, char** argv) {
         midifile.addTimbre(track, 0, channel, instr);
 
         int tpq     = target.getTPQ();
+        int shift = random()%20 - 10;
         //cout << tpq;
         for(int j = 0; j < target[0].getEventCount(); ++j){
             if(target[0][j].isNoteOn()){
                 //int key = pitch(mt);
-                int key = target[0][j].getKeyNumber() + random()%14-7;
+                int key = target[0][j].getKeyNumber() + shift;
                 if(key < 0) key = 0;
 
                 int starttick = target[0][j].tick;
@@ -100,6 +102,7 @@ int main(int argc, char** argv) {
         midifile.sortTracks();
         midifile.deleteTrack(0);
         midifile.joinTracks();
+        midifile.setTPQ(tpq);
         midifile.doTimeAnalysis();
         midifile.linkNotePairs();
 
@@ -111,60 +114,50 @@ int main(int argc, char** argv) {
     }
     auto end_generation = chrono::system_clock::now();
     chrono::duration<double> elapsed_seconds = end_generation - start;
-    cout << "initial population generation completed in " << elapsed_seconds.count() << endl;
-    log_writer << "initial population generation completed in " << elapsed_seconds.count() << endl;
+    cout << "initial population generation completed in " << elapsed_seconds.count() << " seconds" << endl;
+    log_writer << "initial population generation completed in " << elapsed_seconds.count() << " seconds" << endl;
 
     bool found = false;
     int pop_number = 0;
 
-    while (!found && pop_number < 10){
+    while (!found && pop_number < 1000){
+
 
         calculate_fitness(target);
-        for(int i = 0; i < pop_size; i++){
-            cout << population[i].fit << " ";
-        } cout << endl;
 
         sort(population, population+pop_size, sort_rule);
-        reverse(population, population+pop_size);
+
         for(int i = 0; i < pop_size; i++){
             cout << population[i].fit << " ";
+            population[i].doTimeAnalysis();
+            population[i].linkNotePairs();
         } cout << endl;
 
         int part = pop_size/4;
-        int place = target[0].getEventCount()/2;
-        while(!target[0][place].isNoteOff()) place--;
 
         for(int i = 0; i < part; i+=2){
             MidiFile &a = population[i];
             MidiFile &b = population[i+1];
-            breed(a, b, place, i/2);
+            breed(a, b, i/2);
         }
 
         //mutation
 
         for(int i = 0; i < pop_size; ++i){
-            string outname = "./population/gen_" + to_string(pop_number) + "individual" + to_string(i + 1) + ".mid";
+            string outname = "./population/gen_" + to_string(pop_number + 1) + "individual" + to_string(i + 1) + ".mid";
             population[i].write(outname);
             if(population[i].fit >= 9*getNotesCount(target)/10){
                 found = true;
             }
         }
         auto end_iteration = chrono::system_clock::now();
-        chrono::duration<double> elapsed_seconds = end_iteration-end_generation;
-        cout << pop_number << "th iteration complete in " << elapsed_seconds.count() << " with fitness " << population[0].fit << endl;
-        log_writer << pop_number << "th iteration complete in " << elapsed_seconds.count() << " with fitness " << population[0].fit << endl;
+        chrono::duration<double> elapsed_seconds = end_iteration - end_generation;
+        cout << pop_number << "th iteration completed in " << elapsed_seconds.count() << " seconds with fitness " << population[0].fit << endl;
+        log_writer << pop_number << "th iteration completed in " << elapsed_seconds.count() << " seconds with fitness " << population[0].fit << endl;
         end_generation = end_iteration;
 
         pop_number++;
     }
-
-    cout << population[4].fit << " " << population[5].fit << endl;
-    MidiFile &temp = *(population + 4);
-    cout << "temp " << temp.fit << endl;
-    //population[4] = temp;
-    cout << "temp " << temp.fit << endl;
-    //population[5] = temp;
-    cout << (population+4)->fit << " " << (population+5)->fit << endl;
 
     log_writer.close();
     return 0;
@@ -183,14 +176,55 @@ int getNotesCount(const MidiFile &a){
     return count;
 }
 
-void breed(const MidiFile &a, const MidiFile &b, int place, int pair_n){
+void breed(const MidiFile &a, const MidiFile &b, int pair_n){
     MidiFile ab1 = a, ab2 = b;
-    for(int i = 0; i < place; ++i){
-        ab2[1][i] = a[1][i];
-        ab1[1][i] = b[1][i];
+    int size = a.getEventCount(1);
+    for(int i = 0; i < size; i++){
+        int beg_place = i, pos = 0, end_place = i;
+
+        //search regression
+        while(beg_place + pos + 1 < size && a[1][beg_place + pos].getKeyNumber() >= a[1][beg_place + pos + 1].getKeyNumber()){
+            pos++;
+        }
+        if(pos > 3){
+            pos-= 2;
+            end_place += pos;
+            //swap from beg_place to end_place
+            for(pos = beg_place; pos < size && pos < end_place; pos++){
+                ab1[1][pos] = b[1][pos];
+                ab2[1][pos] = a[1][pos];
+            }
+            i = end_place;
+        }
+
+        //search progression
+        while(beg_place + pos + 1 < size && a[1][beg_place + pos].getKeyNumber() <= a[1][beg_place + pos + 1].getKeyNumber()){
+            pos++;
+        }
+        if(pos > 3){
+            pos-= 2;
+            end_place += pos;
+            //swap from beg_place to end_place
+            for(pos = beg_place; pos < size && pos < end_place; pos++){
+                ab1[1][pos] = b[1][pos];
+                ab2[1][pos] = a[1][pos];
+            }
+            i = end_place;
+        }
 
     }
+
+    ab1.deleteTrack(0);
+    ab1.linkNotePairs();
+    ab1.doTimeAnalysis();
+
+    ab2.deleteTrack(0);
+    ab2.linkNotePairs();
+    ab2.doTimeAnalysis();
+
+    population[pop_size - pair_n*2 - 1].erase();
     population [pop_size -(pair_n*2) - 1] = ab1;
+    population[pop_size - (pair_n*2 + 1) - 1].erase();
     population[pop_size - (pair_n*2 + 1) - 1] = ab2;
 
 }
@@ -217,13 +251,19 @@ int calculate_fitness(const MidiFile &target){
                 }
             }
         }
-//        fit = 1000*max_len/(size);
-//        population[i].fit = fit*fit;
+        //fit = 100*max_len/(size);
+       // population[i].fit = fit*fit;
         population[i].fit = max_len;
-    }
+    } //possible intervals in same tone
     return 0;
 }
 
-void mutate(){
+int calculate_tonality(MidiFile a){
+    return 0;
+}
 
+void mutate(MidiFile &a){
+    // определение тональности -- отдельный файл?
+    // изменение высоты в рамках тональности
+    // треки в одной тональности
 }
