@@ -135,6 +135,9 @@ int main(int argc, char** argv) {
         }
 
         //mutation
+//        for(int i = 0; i < (pop_size + 9)/10; i++){
+//            mutate(population[i]);
+//        }
 
         for(int i = 0; i < pop_size; ++i){
             population[i].doTimeAnalysis();
@@ -303,7 +306,13 @@ int calculate_tonality(MidiFile a){
 }
 
 void mutate(MidiFile &a){
-    // определение тональности -- отдельный файл?
-    // изменение высоты в рамках тональности
-    // треки в одной тональности
+    srand(time(NULL));
+    for(int j = 0; j < a.getEventCount(1); j++){
+        if(a[1][j].isNoteOn()){
+            int shift = a[1][j].getKeyNumber() + random()%14 - 7;
+            a[1][j].setKeyNumber(shift);
+            if(a[1][j].isLinked())
+                a[1][j].getLinkedEvent()->setKeyNumber(shift);
+        }
+    }
 }
