@@ -72,7 +72,6 @@ int main(int argc, char** argv) {
 
 
         MidiFile midifile;
-        midifile.read("./population/individual" + to_string(i + 1) + ".mid");
         midifile.addTrack();
         int track   = midifile.getTrackCount() - 1;
         int channel = 0;
@@ -80,7 +79,7 @@ int main(int argc, char** argv) {
         midifile.addTimbre(track, 0, channel, instr);
 
         int tpq     = target.getTPQ();
-        int shift = random()%20 - 10;
+        int shift = random()%14 - 7;
         //cout << tpq;
         for(int j = 0; j < target[0].getEventCount(); ++j){
             if(target[0][j].isNoteOn()){
@@ -127,12 +126,6 @@ int main(int argc, char** argv) {
 
         sort(population, population+pop_size, sort_rule);
 
-        for(int i = 0; i < pop_size; i++){
-            cout << population[i].fit << " ";
-            population[i].doTimeAnalysis();
-            population[i].linkNotePairs();
-        } cout << endl;
-
         int part = pop_size/4;
 
         for(int i = 0; i < part; i+=2){
@@ -144,6 +137,9 @@ int main(int argc, char** argv) {
         //mutation
 
         for(int i = 0; i < pop_size; ++i){
+            population[i].doTimeAnalysis();
+            population[i].linkNotePairs();
+
             string outname = "./population/gen_" + to_string(pop_number + 1) + "individual" + to_string(i + 1) + ".mid";
             population[i].write(outname);
             if(population[i].fit >= 9*getNotesCount(target)/10){
@@ -177,48 +173,92 @@ int getNotesCount(const MidiFile &a){
 }
 
 void breed(const MidiFile &a, const MidiFile &b, int pair_n){
-    MidiFile ab1 = a, ab2 = b;
+    MidiFile ab1, ab2;
+    ab1.addTrack();
+    ab2.addTrack();
+    int track   = ab1.getTrackCount() - 1;
+    int channel = 0;
+    int instr   = 0;
+    ab1.addTimbre(track, 0, channel, instr);
+    ab2.addTimbre(track, 0, channel, instr);
+
+    int tpq     = a.getTPQ();
     int size = a.getEventCount(1);
     for(int i = 0; i < size; i++){
-        int beg_place = i, pos = 0, end_place = i;
 
-        //search regression
-        while(beg_place + pos + 1 < size && a[1][beg_place + pos].getKeyNumber() >= a[1][beg_place + pos + 1].getKeyNumber()){
-            pos++;
-        }
-        if(pos > 3){
-            pos-= 2;
-            end_place += pos;
-            //swap from beg_place to end_place
-            for(pos = beg_place; pos < size && pos < end_place; pos++){
-                ab1[1][pos] = b[1][pos];
-                ab2[1][pos] = a[1][pos];
-            }
-            i = end_place;
-        }
+        if(a[1][i].isNoteOn()){
+            int start = i, current_note = 0, next_note = 1, len = 0;
+            while(start+next_note < size && !a[1][start+next_note].isNoteOn()) next_note++;
 
-        //search progression
-        while(beg_place + pos + 1 < size && a[1][beg_place + pos].getKeyNumber() <= a[1][beg_place + pos + 1].getKeyNumber()){
-            pos++;
-        }
-        if(pos > 3){
-            pos-= 2;
-            end_place += pos;
-            //swap from beg_place to end_place
-            for(pos = beg_place; pos < size && pos < end_place; pos++){
-                ab1[1][pos] = b[1][pos];
-                ab2[1][pos] = a[1][pos];
+            //start search progression
+            while(start+next_note < size && a[1][start+current_note].getKeyNumber() <= a[1][start+next_note].getKeyNumber()){
+                len++;
+                current_note = next_note;
+                next_note++;
+                while(start+next_note < size && !a[1][start+next_note].isNoteOn()) next_note++;
             }
-            i = end_place;
+            //if has
+            if(len > 3){
+                for(int j = start; j < next_note; j++){
+                    if(a[1][j].isNoteOn()){
+                        ab1.addNoteOn(1, b[1][j].tick, 0, b[1][j].getKeyNumber(), b[1][j].getVelocity());
+                        if(b[1][j].isLinked())
+                            ab1.addNoteOff(1, b[1][j].getLinkedEvent()->tick, 0, b[1][j].getKeyNumber());
+
+                        ab2.addNoteOn(1, a[1][j].tick, 0, a[1][j].getKeyNumber(), a[1][j].getVelocity());
+                        if(a[1][j].isLinked())
+                            ab2.addNoteOff(1, a[1][j].getLinkedEvent()->tick, 0, a[1][j].getKeyNumber());
+                    }
+                }
+            }
+            // else
+            else {
+                len = 0;
+                //start search regression
+                while(start+next_note < size && a[1][start+current_note].getKeyNumber() >= a[1][start+next_note].getKeyNumber()){
+                    len++;
+                    current_note = next_note;
+                    next_note++;
+                    while(start+next_note < size && !a[1][start+next_note].isNoteOn()) next_note++;
+                }//if has
+                //swap regression
+                if(len > 3){
+                    for(int j = start; j < next_note; j++){
+                        if(a[1][j].isNoteOn()){
+                            ab1.addNoteOn(1, b[1][j].tick, 0, b[1][j].getKeyNumber(), b[1][j].getVelocity());
+                            if(b[1][j].isLinked())
+                                ab1.addNoteOff(1, b[1][j].getLinkedEvent()->tick, 0, b[1][j].getKeyNumber());
+
+                            ab2.addNoteOn(1, a[1][j].tick, 0, a[1][j].getKeyNumber(), a[1][j].getVelocity());
+                            if(a[1][j].isLinked())
+                                ab2.addNoteOff(1, a[1][j].getLinkedEvent()->tick, 0, a[1][j].getKeyNumber());
+                        }
+                    }
+                }
+
+                else {
+                    ab2.addNoteOn(1, b[1][i].tick, 0, b[1][i].getKeyNumber(), b[1][i].getVelocity());
+                    if(b[1][i].isLinked())
+                        ab2.addNoteOff(1, b[1][i].getLinkedEvent()->tick, 0, b[1][i].getKeyNumber());
+
+                    ab1.addNoteOn(1, a[1][i].tick, 0, a[1][i].getKeyNumber(), a[1][i].getVelocity());
+                    if(a[1][i].isLinked())
+                        ab1.addNoteOff(1, a[1][i].getLinkedEvent()->tick, 0, a[1][i].getKeyNumber());
+                }
+
+            }
+
         }
 
     }
 
-    ab1.deleteTrack(0);
+    ab1.sortTrack(1);
+    ab1.setTPQ(tpq);
     ab1.linkNotePairs();
     ab1.doTimeAnalysis();
 
-    ab2.deleteTrack(0);
+    ab2.sortTrack(1);
+    ab2.setTPQ(tpq);
     ab2.linkNotePairs();
     ab2.doTimeAnalysis();
 
@@ -234,7 +274,7 @@ int calculate_fitness(const MidiFile &target){
     for (int i = 0; i < pop_size; ++i){
         int len = 0, max_len = 0;
         int fit  = 0;
-        int size = population[i][1].getEventCount();
+        int size = min(population[i][1].getEventCount(), target.getEventCount(0));
         int dif = 0;
 
 
@@ -251,7 +291,7 @@ int calculate_fitness(const MidiFile &target){
                 }
             }
         }
-        //fit = 100*max_len/(size);
+        //fit = 200*max_len/(size);
        // population[i].fit = fit*fit;
         population[i].fit = max_len;
     } //possible intervals in same tone
