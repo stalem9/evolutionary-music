@@ -9,6 +9,7 @@
 #include <ctime>
 #include <fstream>
 #include <bits/stdc++.h>
+#include <set>
 
 using namespace std;
 using namespace smf;
@@ -17,6 +18,11 @@ using namespace smf;
 int pop_size;
 
 MidiFile* population;
+
+set <int> target_tonality = {6, 8, 10, 11, 1, 3, 5}; //D-dur
+set <int> dominante = {1, 3, 5, 6, 8, 10, 12}; //A-dur
+set <int> subdominante = {1, 3, 4, 6, 8, 10, 11}; //G-dur
+
 
 int getNotesCount(const MidiFile &a);
 
@@ -79,7 +85,7 @@ int main(int argc, char** argv) {
         midifile.addTimbre(track, 0, channel, instr);
 
         int tpq     = target.getTPQ();
-        int shift = random()%14 - 7;
+        int shift = random()%50 - 38;
         //cout << tpq;
         for(int j = 0; j < target[0].getEventCount(); ++j){
             if(target[0][j].isNoteOn()){
@@ -119,7 +125,7 @@ int main(int argc, char** argv) {
     bool found = false;
     int pop_number = 0;
 
-    while (!found && pop_number < 10){
+    while (pop_number < 1000){
 
 
         calculate_fitness(target);
@@ -243,7 +249,7 @@ void breed(const MidiFile &a, const MidiFile &b, int pair_n){
                     i = j;
                 }
 
-                if(next_note != i) {
+                if(len <= 2 && b[1][i].isNoteOn()) {
                     ab2.addNoteOn(1, b[1][i].tick, 0, b[1][i].getKeyNumber(), b[1][i].getVelocity());
                     if(b[1][i].isLinked())
                         ab2.addNoteOff(1, b[1][i].getLinkedEvent()->tick, 0, b[1][i].getKeyNumber());
@@ -277,28 +283,23 @@ void breed(const MidiFile &a, const MidiFile &b, int pair_n){
 int calculate_fitness(const MidiFile &target){
 
     for (int i = 0; i < pop_size; ++i){
-        int len = 0, max_len = 0;
-        int fit  = 0;
+        int fit  = 0, n1 = 0, n2 = 0, n3 = 0;
         int size = min(population[i][1].getEventCount(), target.getEventCount(0));
-        int dif = 0;
 
 
         for(int j = 1; j < size; j++){
             if(population[i][1][j].isNoteOn()){
-                if(dif == population[i][1][j].getKeyNumber()  - target[0][j].getKeyNumber())
-                    len++;
-                else{
-                    dif = population[i][1][j].getKeyNumber()  - target[0][j].getKeyNumber();
-                    if(len > max_len){
-                        max_len = len;
-                        len = 0;
-                    }
-                }
+                int pitch = population[i][1][j].getKeyNumber()%12;
+                if(pitch == 0) pitch = 12;
+                if(target_tonality.count(pitch)) n1++; else n1--;
+                if(dominante.count(pitch)) n2++; else n2--;
+                if(subdominante.count(pitch)) n3++; else n3--;
             }
         }
         //fit = 200*max_len/(size);
        // population[i].fit = fit*fit;
-        population[i].fit = max_len;
+        fit = (n1*6/10 + n2*2/10 + n3*2/10);
+        population[i].fit = fit;
     } //possible intervals in same tone
     return 0;
 }
@@ -313,10 +314,15 @@ void mutate(int place){
     int tpq = population[place].getTPQ();
     MidiFile a;
     a.addTrack();
+    int tonality[] = {5, 6, 8, 10, 11, 13, 15};
     for(int j = 0; j < size; j++){
         if(population[place][1][j].isNoteOn()){
             int starttick = population[place][1][j].tick;
-            int newKey = population[place][1][j].getKeyNumber() + random()%14 - 7;
+            int newKey = tonality[random()%7];
+
+            newKey += ((population[place][1][j].getKeyNumber()+13)/14)*14;
+            if(newKey < 0) newKey = 0;
+            if(newKey > 127) newKey = 127;
             a.addNoteOn(1, starttick, 0, newKey, population[place][1][j].getVelocity());
             if(population[place][1][j].isLinked()){
                 int endtick = population[place][1][j].getLinkedEvent()->tick;
@@ -324,7 +330,7 @@ void mutate(int place){
 
             }
 
-
+            //main notes tonika, dominanta, subdominanta - check them fitness function
         }
     }
     a.sortTrack(1);
@@ -335,3 +341,5 @@ void mutate(int place){
     population[place].erase();
     population [place] = a;
 }
+
+//relative tonalities //difference in languages parallel
