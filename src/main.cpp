@@ -26,7 +26,7 @@ int calculate_fitness(const MidiFile &target);
 
 int calculate_tonality(MidiFile &a);
 
-void mutate(MidiFile &a);
+void mutate(int place);
 
 
 bool sort_rule(const MidiFile &a, const MidiFile &b){
@@ -119,7 +119,7 @@ int main(int argc, char** argv) {
     bool found = false;
     int pop_number = 0;
 
-    while (!found && pop_number < 1000){
+    while (!found && pop_number < 10){
 
 
         calculate_fitness(target);
@@ -135,8 +135,9 @@ int main(int argc, char** argv) {
         }
 
         //mutation
-//        for(int i = 0; i < (pop_size + 9)/10; i++){
-//            mutate(population[i]);
+//        int part_m = (pop_size + 9)/10;
+//        for(int i = 0; i < part_m; i++){
+//            mutate(i);
 //        }
 
         for(int i = 0; i < pop_size; ++i){
@@ -194,15 +195,16 @@ void breed(const MidiFile &a, const MidiFile &b, int pair_n){
             while(start+next_note < size && !a[1][start+next_note].isNoteOn()) next_note++;
 
             //start search progression
-            while(start+next_note < size && a[1][start+current_note].getKeyNumber() <= a[1][start+next_note].getKeyNumber()){
+            while(start+next_note < size && a[1][start+current_note].getKeyNumber() < a[1][start+next_note].getKeyNumber()){
                 len++;
                 current_note = next_note;
                 next_note++;
                 while(start+next_note < size && !a[1][start+next_note].isNoteOn()) next_note++;
             }
             //if has
-            if(len > 3){
-                for(int j = start; j < next_note; j++){
+            if(len > 2){
+                int j;
+                for(j = start; j < start + next_note; j++){
                     if(a[1][j].isNoteOn()){
                         ab1.addNoteOn(1, b[1][j].tick, 0, b[1][j].getKeyNumber(), b[1][j].getVelocity());
                         if(b[1][j].isLinked())
@@ -213,20 +215,21 @@ void breed(const MidiFile &a, const MidiFile &b, int pair_n){
                             ab2.addNoteOff(1, a[1][j].getLinkedEvent()->tick, 0, a[1][j].getKeyNumber());
                     }
                 }
+                i = j;
             }
-            // else
-            else {
-                len = 0;
+                start = i, current_note = 0, next_note = 1, len = 0;
+                while(start+next_note < size && !a[1][start+next_note].isNoteOn()) next_note++;
                 //start search regression
-                while(start+next_note < size && a[1][start+current_note].getKeyNumber() >= a[1][start+next_note].getKeyNumber()){
+                while(start+next_note < size && a[1][start+current_note].getKeyNumber() > a[1][start+next_note].getKeyNumber()){
                     len++;
                     current_note = next_note;
                     next_note++;
                     while(start+next_note < size && !a[1][start+next_note].isNoteOn()) next_note++;
                 }//if has
                 //swap regression
-                if(len > 3){
-                    for(int j = start; j < next_note; j++){
+                if(len > 2){
+                    int j;
+                    for(j = start; j < start + next_note ; j++){
                         if(a[1][j].isNoteOn()){
                             ab1.addNoteOn(1, b[1][j].tick, 0, b[1][j].getKeyNumber(), b[1][j].getVelocity());
                             if(b[1][j].isLinked())
@@ -237,9 +240,10 @@ void breed(const MidiFile &a, const MidiFile &b, int pair_n){
                                 ab2.addNoteOff(1, a[1][j].getLinkedEvent()->tick, 0, a[1][j].getKeyNumber());
                         }
                     }
+                    i = j;
                 }
 
-                else {
+                if(next_note != i) {
                     ab2.addNoteOn(1, b[1][i].tick, 0, b[1][i].getKeyNumber(), b[1][i].getVelocity());
                     if(b[1][i].isLinked())
                         ab2.addNoteOff(1, b[1][i].getLinkedEvent()->tick, 0, b[1][i].getKeyNumber());
@@ -248,8 +252,6 @@ void breed(const MidiFile &a, const MidiFile &b, int pair_n){
                     if(a[1][i].isLinked())
                         ab1.addNoteOff(1, a[1][i].getLinkedEvent()->tick, 0, a[1][i].getKeyNumber());
                 }
-
-            }
 
         }
 
@@ -305,14 +307,31 @@ int calculate_tonality(MidiFile a){
     return 0;
 }
 
-void mutate(MidiFile &a){
+void mutate(int place){
     srand(time(NULL));
-    for(int j = 0; j < a.getEventCount(1); j++){
-        if(a[1][j].isNoteOn()){
-            int shift = a[1][j].getKeyNumber() + random()%14 - 7;
-            a[1][j].setKeyNumber(shift);
-            if(a[1][j].isLinked())
-                a[1][j].getLinkedEvent()->setKeyNumber(shift);
+    int size = population[place].getEventCount(1);
+    int tpq = population[place].getTPQ();
+    MidiFile a;
+    a.addTrack();
+    for(int j = 0; j < size; j++){
+        if(population[place][1][j].isNoteOn()){
+            int starttick = population[place][1][j].tick;
+            int newKey = population[place][1][j].getKeyNumber() + random()%14 - 7;
+            a.addNoteOn(1, starttick, 0, newKey, population[place][1][j].getVelocity());
+            if(population[place][1][j].isLinked()){
+                int endtick = population[place][1][j].getLinkedEvent()->tick;
+                a.addNoteOff(1, endtick, 0, newKey);
+
+            }
+
+
         }
     }
+    a.sortTrack(1);
+    a.setTPQ(tpq);
+    a.linkNotePairs();
+    a.doTimeAnalysis();
+
+    population[place].erase();
+    population [place] = a;
 }
